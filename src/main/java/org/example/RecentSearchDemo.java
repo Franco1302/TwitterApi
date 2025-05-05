@@ -49,6 +49,7 @@ public class RecentSearchDemo {
         ArrayList<NameValuePair> queryParameters;
         queryParameters = new ArrayList<>();
         queryParameters.add(new BasicNameValuePair("query", searchString));
+        //Para que me develva el ultimo desde este id que ha sido la ultima llamada
         queryParameters.add(new BasicNameValuePair("since_id", "1919347475447423334"));
         uriBuilder.addParameters(queryParameters);
 
