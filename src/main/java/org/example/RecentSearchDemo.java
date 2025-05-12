@@ -19,16 +19,23 @@ import org.apache.http.util.EntityUtils;
  * Sample code to demonstrate the use of the Recent search endpoint
  * */
 public class RecentSearchDemo {
+    private static String newestId = null; // Variable para almacenar el newest_id
+    private static final String TELEGRAM_CHAT_ID = "1216223417"; // Reemplaza con tu chat ID
+    private static final String TELEGRAM_BOT_TOKEN = "7390256020:AAHH17I33j1iqp_NZhSviAQCd09RpbSs-bU"; // Reemplaza con tu token
+    private static final String TELEGRAM_BOT_USERNAME = "PisosUma1_bot"; // Reemplaza con tu nombre de usuario
 
     // To set your enviornment variables in your terminal run the following line:
     // export 'BEARER_TOKEN'='<your_bearer_token>'
 
-    public static void main(String args[]) throws IOException, URISyntaxException {
+    public static void main(String args[]) throws IOException, URISyntaxException, InterruptedException {
         String bearerToken = System.getenv("BEARER_TOKEN");
+        TelegramBOT bot = new TelegramBOT(TELEGRAM_BOT_TOKEN, TELEGRAM_BOT_USERNAME);
         if (null != bearerToken) {
             //Replace the search term with a term of your choice
             String response = search("#pisosuma -is:retweet -is:reply lang:es", bearerToken);
             System.out.println(response);
+            bot.sendMessage(TELEGRAM_CHAT_ID, response);
+
         } else {
             System.out.println("There was a problem getting you bearer token. Please make sure you set the BEARER_TOKEN environment variable");
         }
@@ -50,7 +57,6 @@ public class RecentSearchDemo {
         queryParameters = new ArrayList<>();
         queryParameters.add(new BasicNameValuePair("query", searchString));
         //Para que me develva el ultimo desde este id que ha sido la ultima llamada
-        queryParameters.add(new BasicNameValuePair("since_id", "1919347475447423334"));
         uriBuilder.addParameters(queryParameters);
 
         HttpGet httpGet = new HttpGet(uriBuilder.build());
