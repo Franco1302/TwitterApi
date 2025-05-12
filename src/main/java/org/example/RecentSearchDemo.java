@@ -19,16 +19,16 @@ import org.apache.http.util.EntityUtils;
  * Sample code to demonstrate the use of the Recent search endpoint
  * */
 public class RecentSearchDemo {
-    private static String newestId = null; // Variable para almacenar el newest_id
-    private static final String TELEGRAM_CHAT_ID = "1216223417"; // Reemplaza con tu chat ID
-    private static final String TELEGRAM_BOT_TOKEN = "7390256020:AAHH17I33j1iqp_NZhSviAQCd09RpbSs-bU"; // Reemplaza con tu token
-    private static final String TELEGRAM_BOT_USERNAME = "PisosUma1_bot"; // Reemplaza con tu nombre de usuario
+
+    private static final String TELEGRAM_BOT_USERNAME = "PisosUma1_bot";
 
     // To set your enviornment variables in your terminal run the following line:
     // export 'BEARER_TOKEN'='<your_bearer_token>'
 
     public static void main(String args[]) throws IOException, URISyntaxException, InterruptedException {
         String bearerToken = System.getenv("BEARER_TOKEN");
+        String TELEGRAM_BOT_TOKEN = System.getenv("TELEGRAM_BOT_TOKEN");
+        String TELEGRAM_CHAT_ID = System.getenv("TELEGRAM_CHAT_ID");
         TelegramBOT bot = new TelegramBOT(TELEGRAM_BOT_TOKEN, TELEGRAM_BOT_USERNAME);
         if (null != bearerToken) {
             //Replace the search term with a term of your choice
